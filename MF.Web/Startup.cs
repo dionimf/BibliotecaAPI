@@ -19,6 +19,7 @@ namespace MF.Web
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<MainContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("BibliotecaConnectionString")));
+            services.AddIoc();
             services.AddCors();
             services.AddSwaggerGen(c =>
             {
