@@ -10,6 +10,7 @@ namespace MF.Application.Models.User
         public string LastName { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
+        public int Level { get;  set; }
         public ContactRequestModel Contact { get; set; }
         public AddressRequestModel Address { get; set; }
         public bool Active { get; set; }

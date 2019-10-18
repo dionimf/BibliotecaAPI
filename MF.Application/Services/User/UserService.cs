@@ -24,9 +24,10 @@ namespace MF.Application.Services.User
         public async Task Create(UserRequestModel request)
         {
             var user = new Domain.Entities.User.User(request.FirstName, request.LastName, request.Login,
-                request.Password, ReturnContact(request.Contact),
+                request.Password, request.Level, ReturnContact(request.Contact),
                 ReturnAddress(request.Address), request.Active
             );
+            
             var validUser = user.IsValid();
             if (validUser.IsValid)
             {
@@ -41,7 +42,8 @@ namespace MF.Application.Services.User
         public async Task Update(Guid id, UserRequestModel request)
         {
             var user = await _userRepository.GetById(id);
-            user.Update(request.FirstName, request.LastName, request.Login, request.Password, ReturnContact(request.Contact),
+            user.Update(request.FirstName, request.LastName, request.Login, request.Password, request.Level,
+                ReturnContact(request.Contact),
                 ReturnAddress(request.Address), request.Active);
             var validUser = user.IsValid();
             if (validUser.IsValid)
@@ -67,7 +69,6 @@ namespace MF.Application.Services.User
             {
                 Notifications.AddRange(validUser.Errors.Select(x => x.ErrorMessage).ToList());
             }
-            
         }
 
         public async Task<UserResponseModel> GetById(Guid id)
@@ -87,7 +88,7 @@ namespace MF.Application.Services.User
             return new Contact(
                 request.PhoneNumber,
                 request.Email
-                );
+            );
         }
 
         private Address ReturnAddress(AddressModel request)
@@ -109,6 +110,7 @@ namespace MF.Application.Services.User
                 LastName = user.LastName,
                 Login = user.Login,
                 Password = user.Password,
+                Level = user.Level,
                 Contact = new ContactRequestModel
                 {
                     PhoneNumber = user.Contact.PhoneNumber,
@@ -117,14 +119,15 @@ namespace MF.Application.Services.User
                 Address = new AddressRequestModel
                 {
                     PostalCode = user.Address.PostalCode,
-                    AddressLine =user.Address.AddressLine,
+                    AddressLine = user.Address.AddressLine,
                     City = user.Address.City,
-                    State =user.Address.State,
+                    State = user.Address.State,
                     Country = user.Address.Country
                 },
                 Active = user.Active
             };
         }
+
         public bool IsValid()
         {
             return !Notifications.Any();

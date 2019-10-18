@@ -13,6 +13,7 @@ namespace MF.Infra.Mappings
             builder.Property(d => d.LastName).HasColumnName(nameof(User.LastName)).IsRequired();
             builder.Property(d => d.Login).HasColumnName(nameof(User.Login)).IsRequired();
             builder.Property(d => d.Password).HasColumnName(nameof(User.Password)).IsRequired();
+            builder.Property(d => d.Level).HasColumnName(nameof(User.Level)).IsRequired();
             builder.HasQueryFilter(d => d.Active);
             builder.OwnsOne(o => o.Contact, co =>
             {
