@@ -1,6 +1,6 @@
 namespace MF.Application.Models.Address
 {
-    public class AddressRequestModel
+    public class AddressRequestModel: AddressModel
     {
         
     }

@@ -21,21 +21,30 @@ namespace MF.Web.Controllers
         public async Task<IActionResult> Create([FromBody] UserRequestModel request)
         {
             await _userService.Create(request);
-            return NoContent();
+            if (_userService.IsValid())
+            {
+                return NoContent();    
+            }
+            return BadRequest(_userService.GetNotfications());
+
         }
         [HttpPut]
         [Route("{id}")]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UserRequestModel request)
         {
             await _userService.Update(id, request);
-            return NoContent();
+            if(_userService.IsValid())
+                return NoContent();
+            return BadRequest(_userService.GetNotfications());
         }
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             await _userService.Delete(id);
-            return NoContent();
+            if(_userService.IsValid())
+                return NoContent();
+            return BadRequest(_userService.GetNotfications());
         }
         [HttpGet]
         [Route("{id}")]

@@ -1,4 +1,6 @@
 using System;
+using FluentValidation.Results;
+using MF.Domain.Validation;
 
 namespace MF.Domain.Entities.User
 {
@@ -49,6 +51,10 @@ namespace MF.Domain.Entities.User
             Active = active;
         }
 
+        public ValidationResult IsValid()
+        {
+            return new UserValidation().Validate(this);
+        }
         
 
         

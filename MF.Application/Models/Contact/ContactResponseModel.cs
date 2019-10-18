@@ -1,6 +1,6 @@
 namespace MF.Application.Models.Contact
 {
-    public class ContactResponseModel
+    public class ContactResponseModel : ContactModel
     {
         
     }
