@@ -6,9 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Entities\" />
-    <Folder Include="Entities\Author" />
-    <Folder Include="Entities\Book" />
-    <Folder Include="Entities\PublishingCompany" />
     <Folder Include="Interfaces\" />
   </ItemGroup>
 
