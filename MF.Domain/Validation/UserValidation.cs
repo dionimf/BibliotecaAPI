@@ -13,9 +13,9 @@ namespace MF.Domain.Validation
             RuleFor(v => v.LastName)
                 .NotEmpty().NotNull().WithMessage("O campo Sobrenome deve ser preenchido");
             RuleFor(v => v.Login)
-                .NotEmpty().NotNull().WithMessage("O campo Login deve ser preenchido");
+                .NotEmpty().NotNull().MinimumLength(3).WithMessage("O campo Login deve ser preenchido");
             RuleFor(v => v.Password)
-                .NotEmpty().NotNull().WithMessage("O campo Senha deve ser preenchido");
+                .NotEmpty().NotNull().MinimumLength(6).WithMessage("O campo Senha deve ser preenchido");
             RuleFor(v => v.Contact)
                 .Must(ContactValidate);
             RuleFor(v => v.Address)

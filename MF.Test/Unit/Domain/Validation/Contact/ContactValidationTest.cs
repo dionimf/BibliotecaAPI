@@ -10,6 +10,8 @@ namespace MF.Test.Unit.Domain.Validation.Contact
         [Theory]
         [InlineData("5555555555555555555555555555555",false)]
         [InlineData("55555",false)]
+        [InlineData("",false)]
+        [InlineData(" ",false)]
         [InlineData("48999281203",true)]
         public async Task MustCheckPhoneNumberValid(string phoneNumber,bool result)
         {
@@ -22,6 +24,8 @@ namespace MF.Test.Unit.Domain.Validation.Contact
         [Theory]
         [InlineData("saddsdasdad",false)]
         [InlineData("544454",false)]
+        [InlineData("",false)]
+        [InlineData(" ",false)]
         [InlineData("dionimf@unesc.net",true)]
         public async Task MustCheckEmailValid(string email,bool result)
         {
